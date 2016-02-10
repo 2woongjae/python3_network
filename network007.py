@@ -5,7 +5,14 @@ import sys
 import socket
 import argparse
 
+# .encode()
+# str => data
+
+# .decode()
+# data => str
+
 def main():
+
     # setup argument parsing
     parser = argparse.ArgumentParser(description='Socket Error Examples')
     parser.add_argument('--host', action="store", dest="host", required=False)
@@ -21,7 +28,7 @@ def main():
     # First try-except block -- create socket
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    except(socket.error, e):
+    except socket.error as e:
         print("Error creating socket : ", e)
         sys.exit(1)
     
@@ -29,23 +36,18 @@ def main():
     try:
         s.connect((host, port))
     except socket.gaierror as e:
-        print(e)
+        print("Address related error connecting to server : ", e)
         sys.exit(1)
-    except:
-        print("Address-related error connecting to server : ")
+    except socket.error as e:
+        print("Connecting error : ", e)
         sys.exit(1)
-    
-    #except(socket.error, e):
-    #    print("Connection error : ", e)
-    #    sys.exit(1)
-        
-    print("check")
-    sys.exit(1)
     
     # Third try-except block -- sending data
     try:
-        s.sendall("GET ", filename, " HTTP/1.0\r\n\r\n")
-    except(socket.error, e):
+        s.sendall(("GET {0} HTTP/1.0\r\n\r\n".format(filename)).encode())
+        #s.sendall("GET network007.py HTTP/1.0\r\n\r\n")
+        #s.sendall(filename)
+    except socket.error as e:
         print("Error sending data : ", e)
         sys.exit(1)
         
@@ -53,7 +55,7 @@ def main():
         # Fourth try-except block -- waiting to receive data from remote host
         try:
             buf = s.recv(2048)
-        except(socket.error, e):
+        except socket.error as e:
             print("Error receiving data : ", e)
             sys.exit(1)
             
@@ -61,7 +63,7 @@ def main():
             break
             
         # write the received data
-        sys.stdout.write(buf)
+        sys.stdout.write(buf.decode())
                 
 if __name__ == '__main__':
     main()

@@ -6,9 +6,9 @@ import socket
 def get_remote_machine_info():
     remote_host = 'www.vtouchinc.com';
     try:
-        print("IP address of ", remote_host, " : ", socket.gethostbyname(remote_host))
-    except(socket.error, err_msg):
-        print(remote_host, " : ", err_msg)
+        print("IP address of {0} : {1}".format(remote_host, socket.gethostbyname(remote_host)))
+    except socket.error as e:
+        print(remote_host, " : ", e)
         
 if __name__ == '__main__':
     get_remote_machine_info()

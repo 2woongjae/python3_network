@@ -6,9 +6,9 @@ import socket
 def find_service_name():
     protocolname = 'tcp'
     for port in [80, 25]:
-        print("Port : ", port, " => service name : ", socket.getservbyport(port, protocolname))
+        print("Port : {0} => service name : {1}".format(port, socket.getservbyport(port, protocolname)))
     
-    print("Port : ", 53, " => service name : ", socket.getservbyport(53, 'udp'))
+    print("Port : 53 => service name : {1}".format(53, socket.getservbyport(53, 'udp')))
     
 if __name__ == '__main__':
     find_service_name()

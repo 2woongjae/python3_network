@@ -7,10 +7,10 @@ def convert_integer():
     data = 1234
     
     # 32-bit
-    print("Original : ", data, " => [Long] host byte order : ", socket.ntohl(data), ", Network byte order : ", socket.htonl(data))
+    print("Original : {0} => [Long] host byte order : {1}, Network byte order : {2}".format(data, socket.ntohl(data), socket.htonl(data)))
     
     # 16-bit
-    print("Original : ", data, " => [Short] host byte order : ", socket.ntohs(data), ", Network byte order : ", socket.htons(data))
+    print("Original : {0} => [Short] host byte order : {1}, Network byte order : {2}".format(data, socket.ntohs(data), socket.htons(data)))
     
 if __name__ == '__main__':
     convert_integer()
