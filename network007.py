@@ -45,8 +45,6 @@ def main():
     # Third try-except block -- sending data
     try:
         s.sendall(("GET {0} HTTP/1.0\r\n\r\n".format(filename)).encode())
-        #s.sendall("GET network007.py HTTP/1.0\r\n\r\n")
-        #s.sendall(filename)
     except socket.error as e:
         print("Error sending data : ", e)
         sys.exit(1)

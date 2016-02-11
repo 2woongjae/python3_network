@@ -31,3 +31,7 @@
 #### network007.py
   - 소켓 에러를 간결하면서도 자연스럽게 처리하기 (p37)
   - $ python network007.py --host=www.python.org --port=80 --file=network007.py
+  
+#### network008.py
+  - 소켓의 전송/수신 버퍼 크기 변경 (p41)
+  - $ python network008.py
